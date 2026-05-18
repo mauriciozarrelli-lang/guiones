@@ -1,0 +1,1918 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estrategia de Contenido — 6 Semanas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0a;
+  --bg-soft: #131313;
+  --bg-card: #1a1a1a;
+  --text: #ebe9e4;
+  --text-soft: #8a8884;
+  --text-dim: #5a5856;
+  --accent: #ff4628;
+  --accent-soft: rgba(255, 70, 40, 0.12);
+  --border: rgba(235, 233, 228, 0.08);
+  --border-bright: rgba(235, 233, 228, 0.18);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Archivo', sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ASTERISK accent */
+.asterisk {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  color: var(--accent);
+  font-size: 28px;
+  font-weight: 900;
+  z-index: 100;
+  letter-spacing: -0.05em;
+  animation: spin 20s linear infinite;
+  pointer-events: none;
+}
+
+.plus {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  color: var(--accent);
+  font-size: 28px;
+  font-weight: 300;
+  z-index: 100;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* SIDE NAV */
+.side-nav {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 0;
+}
+
+.side-tab {
+  background: var(--text);
+  color: var(--bg);
+  padding: 14px 6px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 90px;
+  width: 32px;
+}
+
+.side-tab:hover {
+  background: var(--accent);
+  color: var(--text);
+  padding-right: 12px;
+}
+
+.side-tab.active {
+  background: var(--accent);
+  color: var(--text);
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  position: relative;
+}
+
+.hero-logo {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 80px;
+}
+
+.hero-asterisk {
+  font-family: 'Anton', sans-serif;
+  font-size: 100px;
+  line-height: 0.8;
+  color: var(--text);
+  letter-spacing: -0.06em;
+}
+
+.hero-logo-text {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 900;
+  font-size: 60px;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.hero-logo-text sup {
+  font-size: 16px;
+  font-weight: 400;
+  vertical-align: super;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 80px;
+  font-size: 30px;
+  color: var(--text);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+/* INTRO */
+.intro {
+  padding: 120px 24px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.intro-tag {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+}
+
+.intro-tag::before {
+  content: "(1) ";
+}
+
+.intro-title {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 900;
+  font-size: clamp(48px, 8vw, 120px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin-bottom: 40px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.intro-subtitle {
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(18px, 2vw, 24px);
+  color: var(--text);
+  max-width: 600px;
+  margin: 0 auto 80px;
+}
+
+/* META INFO */
+.meta-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.meta-item {
+  background: var(--bg);
+  padding: 32px 24px;
+  text-align: left;
+}
+
+.meta-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+
+.meta-value {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.meta-value .accent {
+  color: var(--accent);
+}
+
+/* WEEK SELECTOR */
+.weeks-section {
+  padding: 120px 24px;
+  border-top: 1px solid var(--border);
+}
+
+.section-header {
+  max-width: 1400px;
+  margin: 0 auto 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.section-tag {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 900;
+  font-size: clamp(40px, 6vw, 80px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.section-desc {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--text-soft);
+  font-size: 18px;
+  max-width: 400px;
+  text-align: right;
+}
+
+/* WEEK CARDS GRID */
+.weeks-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 24px;
+}
+
+.week-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 40px 32px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 320px;
+}
+
+.week-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 0;
+  background: var(--accent);
+  transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.week-card:hover {
+  border-color: var(--border-bright);
+  transform: translateY(-4px);
+  background: var(--bg-soft);
+}
+
+.week-card:hover::before {
+  height: 100%;
+}
+
+.week-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.week-number-big {
+  font-family: 'Anton', sans-serif;
+  font-size: 100px;
+  line-height: 0.8;
+  color: var(--text-dim);
+  letter-spacing: -0.04em;
+  transition: color 0.4s ease;
+}
+
+.week-card:hover .week-number-big {
+  color: var(--accent);
+}
+
+.week-title {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  flex: 1;
+}
+
+.week-pillar {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.week-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.week-arrow {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--text);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  transition: all 0.3s ease;
+}
+
+.week-card:hover .week-arrow {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: rotate(-45deg);
+}
+
+/* MODAL */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 200;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 20px;
+  overflow-y: auto;
+}
+
+.modal-overlay.active {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal {
+  background: var(--bg);
+  max-width: 1000px;
+  width: 100%;
+  border: 1px solid var(--border-bright);
+  position: relative;
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-close {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-close-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: 1px solid var(--text);
+  color: var(--text);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 300;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: rotate(90deg);
+}
+
+.modal-body {
+  padding: 48px 56px 80px;
+}
+
+.modal-header {
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-number {
+  font-family: 'Anton', sans-serif;
+  font-size: 16vw;
+  line-height: 0.8;
+  color: var(--bg-card);
+  letter-spacing: -0.04em;
+  position: absolute;
+  top: 80px;
+  right: 40px;
+  pointer-events: none;
+  z-index: -1;
+  user-select: none;
+}
+
+.modal-tag {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+}
+
+.modal-title {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 900;
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+
+.modal-subtitle {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--text-soft);
+  font-size: 20px;
+}
+
+/* TABS DENTRO DEL MODAL */
+.modal-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.modal-tab {
+  background: transparent;
+  border: none;
+  color: var(--text-soft);
+  padding: 16px 24px;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.modal-tab::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.modal-tab:hover {
+  color: var(--text);
+}
+
+.modal-tab.active {
+  color: var(--accent);
+}
+
+.modal-tab.active::after {
+  transform: scaleX(1);
+}
+
+/* TAB CONTENT */
+.tab-content {
+  display: none;
+  animation: fadeInTab 0.3s ease;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeInTab {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* CONTENT STYLING */
+.content-section {
+  margin-bottom: 40px;
+}
+
+.content-h3 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  padding-left: 16px;
+  border-left: 3px solid var(--accent);
+}
+
+.content-h4 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: 32px;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.content-p {
+  color: var(--text);
+  margin-bottom: 16px;
+  line-height: 1.65;
+  font-size: 16px;
+}
+
+.content-p strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.content-p em {
+  font-style: italic;
+  color: var(--text-soft);
+}
+
+.content-ul {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.content-ul li {
+  padding: 6px 0 6px 24px;
+  position: relative;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.content-ul li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* BLOCK CARDS */
+.block-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 28px;
+  margin-bottom: 16px;
+  position: relative;
+  transition: border-color 0.3s ease;
+}
+
+.block-card:hover {
+  border-color: var(--border-bright);
+}
+
+.block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.block-title {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.block-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 4px 10px;
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+}
+
+.block-row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+}
+
+.block-row:last-child {
+  border-bottom: none;
+}
+
+.block-row-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding-top: 4px;
+}
+
+.block-row-content {
+  color: var(--text);
+  line-height: 1.55;
+}
+
+.quote {
+  display: block;
+  padding: 12px 16px;
+  background: rgba(255, 70, 40, 0.05);
+  border-left: 2px solid var(--accent);
+  font-style: italic;
+  color: var(--text);
+  margin-top: 4px;
+}
+
+/* GUION CONSOLIDADO */
+.voice-over-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-bright);
+  padding: 40px;
+  margin: 32px 0;
+  position: relative;
+}
+
+.voice-over-box::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  left: 24px;
+  font-family: 'Anton', sans-serif;
+  font-size: 80px;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.voice-over-text {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--text);
+  margin-left: 20px;
+}
+
+.voice-over-text p {
+  margin-bottom: 16px;
+}
+
+/* CHECKLIST */
+.checklist {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 32px;
+  margin-top: 24px;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 10px 0;
+  font-size: 15px;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.checklist-item:hover {
+  color: var(--text);
+}
+
+.checklist-checkbox {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--text-soft);
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.checklist-item.checked .checklist-checkbox {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.checklist-item.checked .checklist-checkbox::after {
+  content: '✓';
+}
+
+.checklist-item.checked .checklist-label {
+  color: var(--text-dim);
+  text-decoration: line-through;
+}
+
+/* TABLE */
+.data-table {
+  width: 100%;
+  border: 1px solid var(--border);
+  margin: 20px 0;
+  background: var(--bg-card);
+}
+
+.data-table-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table-row:last-child {
+  border-bottom: none;
+}
+
+.data-table-cell {
+  padding: 16px 20px;
+  font-size: 15px;
+}
+
+.data-table-cell:first-child {
+  background: var(--bg-soft);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+}
+
+/* CAPTION CARDS */
+.caption-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 28px;
+  margin: 16px 0;
+}
+
+.caption-platform {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 5px 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.caption-text {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text);
+  white-space: pre-line;
+}
+
+.caption-hashtags {
+  display: block;
+  margin-top: 12px;
+  color: var(--text-soft);
+  font-size: 14px;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 80px 24px 40px;
+  text-align: center;
+}
+
+.footer-tagline {
+  font-style: italic;
+  color: var(--text-soft);
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+.footer-credit {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .side-nav { display: none; }
+  
+  .hero-logo {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+  
+  .hero-asterisk { font-size: 60px; }
+  .hero-logo-text { font-size: 40px; }
+  
+  .modal-body { padding: 32px 24px 60px; }
+  .modal-close { padding: 16px 24px; }
+  
+  .block-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  
+  .data-table-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .data-table-cell:first-child {
+    padding-bottom: 4px;
+  }
+  
+  .modal-number {
+    font-size: 40vw;
+    top: 40px;
+    right: 20px;
+  }
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--bg-card); border: 1px solid var(--border); }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* Print */
+@media print {
+  body { background: white; color: black; }
+  .side-nav, .asterisk, .plus, .modal-close { display: none; }
+  .modal-overlay { position: static; background: white; padding: 0; }
+  .modal { border: none; max-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<div class="asterisk">✱</div>
+<div class="plus">+</div>
+
+<nav class="side-nav">
+  <button class="side-tab" onclick="scrollToSection('hero')">Inicio</button>
+  <button class="side-tab" onclick="scrollToSection('intro')">Estrategia</button>
+  <button class="side-tab" onclick="scrollToSection('weeks')">Guiones</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-logo">
+    <span class="hero-asterisk">✱</span>
+    <span class="hero-logo-text">strategy<br>brief<sup>®</sup></span>
+  </div>
+  <div class="scroll-indicator">⌄</div>
+</section>
+
+<!-- INTRO -->
+<section class="intro" id="intro">
+  <div class="intro-tag">Plan de contenido — 6 semanas</div>
+  <h1 class="intro-title">Estrategia<br>de marca</h1>
+  <p class="intro-subtitle">De fotógrafo a creador de contenido visual integral. Transición silenciosa en seis videos.</p>
+  
+  <div class="meta-grid">
+    <div class="meta-item">
+      <div class="meta-label">Duración</div>
+      <div class="meta-value">6 <span class="accent">semanas</span></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Videos</div>
+      <div class="meta-value">6 <span class="accent">reels</span></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Carruseles</div>
+      <div class="meta-value">6 <span class="accent">posts</span></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Cupos</div>
+      <div class="meta-value">3 <span class="accent">marcas/mes</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WEEKS GRID -->
+<section class="weeks-section" id="weeks">
+  <div class="section-header">
+    <div>
+      <div class="section-tag">(2) Los seis guiones</div>
+      <h2 class="section-title">Plan<br>completo</h2>
+    </div>
+    <p class="section-desc">Curva narrativa progresiva. Cada video instala una pregunta que el siguiente responde.</p>
+  </div>
+  
+  <div class="weeks-grid" id="weeksGrid">
+    <!-- Las tarjetas se generan con JS -->
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-tagline">Una marca no se construye con más contenido. Se construye con sentido.</p>
+  <p class="footer-credit">Estrategia + ejecución — Maracay</p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-close">
+      <span class="modal-close-meta" id="modalMeta">Semana 01</span>
+      <button class="modal-close-btn" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <!-- Contenido dinámico -->
+    </div>
+  </div>
+</div>
+
+<script>
+// ============ DATA DE LOS 6 VIDEOS ============
+const videos = [
+  {
+    week: 1,
+    title: "Por qué tu marca no vende aunque el producto sea bueno",
+    pillar: "Educación a marcas",
+    objective: "Que el dueño de un emprendimiento se identifique con el problema y entienda que la imagen es lo primero que vende, antes que el producto.",
+    duration: "35-45 seg",
+    tone: "Directo, honesto, premium, sin sonar a regaño",
+    concept: "Comparación visual entre cómo se ve una marca con contenido improvisado vs. una con contenido cuidado. El espectador se ve a sí mismo en el 'antes' y entiende, sin que lo nombres, que vos resolvés foto, video y diseño bajo un mismo lenguaje.",
+    blocks: [
+      {
+        name: "BLOQUE 1 — HOOK",
+        time: "0:00 - 0:04",
+        toma: "Plano cerrado de un producto cotidiano (taza, vela, botella) fotografiado MAL a propósito: flash directo, luz cenital, fondo desordenado de cocina, encuadre torcido. Visualmente debe sentirse amateur.",
+        texto: "Tenés un buen producto.",
+        vo: "Tenés un buen producto.",
+        audio: "Música arrancando suave, atmosférica. Sub-bass discreto."
+      },
+      {
+        name: "BLOQUE 2 — REFUERZO DEL PROBLEMA",
+        time: "0:04 - 0:08",
+        toma: "Otra toma mal hecha del mismo u otro producto: contra pared blanca aburrida, mala luz, sin dirección de arte. El espectador piensa 'yo subo cosas así'.",
+        texto: "Pero nadie te compra.",
+        vo: "Pero nadie te compra.",
+        audio: "La música sigue suave, espacio respirable."
+      },
+      {
+        name: "BLOQUE 3 — EL DIAGNÓSTICO",
+        time: "0:08 - 0:14",
+        toma: "Corte a vos o solo tus manos sobre una mesa de trabajo. Iluminación cuidada, contraste con las tomas anteriores. El cambio visual habla solo.",
+        texto: "El problema no es tu producto.",
+        vo: "El problema no es tu producto. Es cómo lo estás mostrando.",
+        audio: "Música empieza build-up sutil. Golpe musical leve al final de la frase."
+      },
+      {
+        name: "BLOQUE 4 — REVELACIÓN VISUAL",
+        time: "0:14 - 0:24",
+        toma: "<strong>Foto + Foto + Video + Diseño del mismo producto.</strong><br><br>4.1 (2s): Foto cinematográfica principal. Imagen FIJA.<br>4.2 (1.5s): Foto, otro ángulo. Misma paleta, misma vibra.<br>4.3 (2.5s): Video del producto con movimiento (dolly, rotación o textura).<br>4.4 (3s): Diseño/post de redes en mockup de teléfono.<br><br>Transiciones: corte seco entre fotos, match cut o IA entre foto-video, transición marcada entre video-diseño.",
+        texto: "La gente no compra lo que vendés.",
+        vo: "La gente no compra lo que vendés. Compra cómo lo mostrás.",
+        audio: "Drop de la música cuando pasa foto→video o video→diseño."
+      },
+      {
+        name: "BLOQUE 5 — IDEA DE CIERRE",
+        time: "0:24 - 0:32",
+        toma: "<strong>Plano atmosférico de tu zona de trabajo.</strong> Vos NO estás en cuadro. Setup con cámara apoyada, laptop encendida con proyecto en edición, taza de café, libreta abierta. Luz cálida. Cámara fija o movimiento muy lento. Profundidad de campo.",
+        texto: "La imagen vende antes que el producto.",
+        vo: "Una marca con buena imagen no necesita convencer a nadie. La imagen lo hace antes.",
+        audio: "Música bajando, espacio para respirar."
+      },
+      {
+        name: "BLOQUE 6 — CTA Y FIRMA",
+        time: "0:32 - 0:40",
+        toma: "Plano cerrado tuyo a cámara, mirada directa, fondo controlado. Estás quieto, sereno. Cierre con tu @ + 'Maracay 📍'.",
+        texto: "¿Tu marca se ve como te merecés?",
+        vo: "¿Tu marca se ve como te merecés? Si no, seguime. Esto va a ir tomando forma.",
+        audio: "Cierre musical limpio. Fade out."
+      }
+    ],
+    voiceOver: [
+      "Tenés un buen producto.",
+      "Pero nadie te compra.",
+      "El problema no es tu producto. Es cómo lo estás mostrando.",
+      "La gente no compra lo que vendés. Compra cómo lo mostrás.",
+      "Una marca con buena imagen no necesita convencer a nadie. La imagen lo hace antes.",
+      "¿Tu marca se ve como te merecés? Si no, seguime. Esto va a ir tomando forma."
+    ],
+    productionPlan: [
+      { time: "20 min", task: "Preparación de productos y setup" },
+      { time: "20 min", task: "Tomas mal hechas con teléfono (Bloques 1 y 2)" },
+      { time: "120 min", task: "Bloque 4: 2 fotos + 1 video cinematográficos del mismo producto" },
+      { time: "20 min", task: "Plano del diagnóstico (Bloque 3)" },
+      { time: "25 min", task: "Plano atmosférico de cierre (Bloque 5)" },
+      { time: "20 min", task: "Plano CTA tuyo a cámara (Bloque 6)" },
+      { time: "45 min", task: "B-roll reutilizable (bonus)" },
+      { time: "30 min", task: "Voice over (al final del día)" },
+      { time: "60 min", task: "Diseño del post + mockup (noche/computadora)" }
+    ],
+    captionTiktok: "No es tu producto. Es cómo lo mostrás.",
+    hashtagsTiktok: "#marcaspersonales #emprendedoresvenezuela #contenidoparamarcas #maracay",
+    captionInstagram: "Tu producto puede ser excelente. Pero si la imagen con la que lo presentás no transmite el mismo nivel, la gente no llega a probarlo.\n\nLa decisión de compra se toma en los primeros 2 segundos. Y en esos 2 segundos no estás vendiendo tu producto, estás vendiendo cómo se ve.\n\nEsto va a ir tomando forma en las próximas semanas. Quedate.",
+    hashtagsInstagram: "#marcasenvenezuela #contenidovisual #emprendedores #branding #maracay",
+    hookVariants: [
+      "Tenés un buen producto. Pero nadie te compra.",
+      "Tu producto no es el problema. Esto sí.",
+      "Vendés algo bueno y nadie lo nota. Por esto.",
+      "Tu marca está perdiendo plata todos los días. Y no es por el precio."
+    ],
+    checklist: [
+      "Video editado en 9:16 (1080x1920)",
+      "Mismo color grading en todas las tomas",
+      "Texto en pantalla legible en mobile",
+      "Voice over limpio, sin ruidos",
+      "Música con drop durante Bloque 4",
+      "Bloque 4 con foto + foto + video + diseño conectados",
+      "Bloque 5 atmosférico, sin vos en cámara, plano largo",
+      "Transiciones IA solo en Bloque 4 (máximo 2)",
+      "Duración entre 35-45 segundos",
+      "Caption preparado (TikTok + Instagram)",
+      "Hashtags definidos (5-8)",
+      "Publicar primero TikTok, esperar 30-60 min, después Instagram",
+      "Responder primeros comentarios en la primera hora"
+    ]
+  },
+  {
+    week: 2,
+    title: "El error de querer parecer lo que no sos",
+    pillar: "Educación a marcas",
+    objective: "Que el dueño de un emprendimiento entienda que la imagen debe alinear marca con cliente ideal, no aparentar algo que no es.",
+    duration: "40-50 seg",
+    tone: "Honesto, casi de consejo de amigo experto, sin condescendencia",
+    concept: "Una marca accesible no debe verse cara, ni una marca premium debe verse barata. El problema no es el precio: es la coherencia entre lo que vendés y cómo lo mostrás.",
+    blocks: [
+      {
+        name: "BLOQUE 1 — HOOK",
+        time: "0:00 - 0:05",
+        toma: "Plano cinematográfico de un producto cotidiano y accesible (empanada, arepa, café de bodega) en estética claramente premium fría: mármol, dorado, fondo oscuro elegante, tipografía serif. El contraste entre estética premium y producto sencillo debe ser ABSURDO.",
+        texto: "Esta foto está mal.",
+        vo: "Esta foto está perfecta. Y aún así, está mal.",
+        audio: "Música con beat marcado, casi de revelación."
+      },
+      {
+        name: "BLOQUE 2 — EL DIAGNÓSTICO",
+        time: "0:05 - 0:11",
+        toma: "Secuencia rápida de marcas accesibles con estéticas falsamente 'premium': fotos oscuras, tipografías elegantes intentando parecer lo que no son. Visualmente debe sentirse forzado.",
+        texto: "Quiso parecer lo que no es.",
+        vo: "El error más caro de una marca no es verse mal. Es verse como algo que no es.",
+        audio: "Música baja, espacio respirable."
+      },
+      {
+        name: "BLOQUE 3 — LO ACCESIBLE BIEN COMUNICADO",
+        time: "0:11 - 0:20",
+        toma: "Secuencia de 3 piezas tuyas de un producto accesible (empanada, café, postre casero): foto cálida con manos humanas + mini video con vapor/textura + post diseñado con tono cercano. Visualmente potentes pero honestas, sin pretender ser lujo.",
+        texto: "Accesible. Y poderoso.",
+        vo: "Una marca accesible puede ser visualmente brutal. No necesita parecer cara. Necesita parecer real, deseable y cercana.",
+        audio: "Música retoma energía."
+      },
+      {
+        name: "BLOQUE 4 — LO PREMIUM BIEN COMUNICADO",
+        time: "0:20 - 0:28",
+        toma: "Secuencia de 3 piezas tuyas de un producto premium (perfume, accesorio, vela): foto cinematográfica con luz cuidada + mini video con movimiento elegante + post diseñado con tipografía respirada. Estética elevada CON narrativa, no solo lujo decorativo.",
+        texto: "Premium. Y coherente.",
+        vo: "Y una marca premium no se ve premium por poner el producto en mármol. Se ve premium cuando todo lo que muestra confirma lo que cobra.",
+        audio: "Beat marcado, ritmo sostenido."
+      },
+      {
+        name: "BLOQUE 5 — REVELACIÓN: ALINEACIÓN",
+        time: "0:28 - 0:36",
+        toma: "Split visual o secuencia paralela mostrando los dos mundos del Bloque 3 y 4 intercalados. Dos productos distintos en categoría, ambos comunicados con criterio.",
+        texto: "No hay imagen buena o mala. Hay imagen alineada.",
+        vo: "El problema nunca fue verse barata o verse cara. El problema es no comunicar lo que sos. Tu imagen tiene que hablarle a tu cliente, no a tu ego.",
+        audio: "Drop de la música. Momento de impacto."
+      },
+      {
+        name: "BLOQUE 6 — CIERRE ATMOSFÉRICO",
+        time: "0:36 - 0:44",
+        toma: "Plano atmosférico de tu setup, mismo lenguaje que el Bloque 5 del Video 1 (firma visual). Luz cálida, intimidad.",
+        texto: "Una marca no necesita parecer otra cosa. Necesita verse como lo que es, bien hecho.",
+        vo: "Una marca no necesita parecer otra cosa. Necesita verse como lo que es. Pero bien hecho.",
+        audio: "Música bajando, espacio."
+      },
+      {
+        name: "BLOQUE 7 — CTA Y FIRMA",
+        time: "0:44 - 0:50",
+        toma: "Mismo formato del CTA del Video 1. Plano cerrado tuyo o tu logo. Consistencia.",
+        texto: "¿Tu marca se ve como vos sos?",
+        vo: "¿Tu marca se está viendo como lo que es realmente? Si no, seguime. Esto va tomando forma.",
+        audio: "Cierre musical limpio."
+      }
+    ],
+    voiceOver: [
+      "Esta foto está perfecta. Y aún así, está mal.",
+      "El error más caro de una marca no es verse mal. Es verse como algo que no es.",
+      "Una marca accesible puede ser visualmente brutal. No necesita parecer cara. Necesita parecer real, deseable y cercana.",
+      "Y una marca premium no se ve premium por poner el producto en mármol. Se ve premium cuando todo lo que muestra confirma lo que cobra.",
+      "El problema nunca fue verse barata o verse cara. El problema es no comunicar lo que sos. Tu imagen tiene que hablarle a tu cliente, no a tu ego.",
+      "Una marca no necesita parecer otra cosa. Necesita verse como lo que es. Pero bien hecho.",
+      "¿Tu marca se está viendo como lo que es realmente? Si no, seguime. Esto va tomando forma."
+    ],
+    productionPlan: [
+      { time: "45 min", task: "Preparación de productos y setups (2 productos: accesible + premium)" },
+      { time: "30 min", task: "Bloque 1: toma absurda" },
+      { time: "30 min", task: "Bloque 2: tomas de incoherencia" },
+      { time: "75 min", task: "Bloque 3: producto accesible (foto + video + diseño)" },
+      { time: "75 min", task: "Bloque 4: producto premium (foto + video + diseño)" },
+      { time: "60 min", task: "Diseño de los 2 posts en computadora" },
+      { time: "15 min", task: "Plano atmosférico (Bloque 6)" },
+      { time: "20 min", task: "Plano tuyo CTA (Bloque 7)" },
+      { time: "20 min", task: "Voice over" }
+    ],
+    captionTiktok: "No es verse cara. Es verse real.",
+    hashtagsTiktok: "#marcaspersonales #brandingvisual #emprendedoresvenezuela #contenidoparamarcas #maracay",
+    captionInstagram: "Una marca accesible no tiene que disfrazarse de premium para vender mejor. Y una marca premium tiene que comunicar lo que vale, no solo decorarlo.\n\nEl error más común que veo en redes: marcas tratando de parecer lo que no son. Y el cliente lo nota antes que cualquiera.\n\nTu imagen tiene que hablarle a tu cliente, no a tu ego.\n\nEsto va tomando forma. Quedate.",
+    hashtagsInstagram: "#marcasenvenezuela #contenidovisual #branding #emprendedores #maracay",
+    hookVariants: [
+      "Esta foto está perfecta. Y aún así, está mal.",
+      "El error más caro de una marca no es verse mal.",
+      "Por qué tu marca no debería intentar verse cara.",
+      "Tu imagen tiene que hablarle a tu cliente, no a tu ego."
+    ],
+    checklist: [
+      "Video editado en 9:16",
+      "Mismo color grading que Video 1",
+      "Bloques 3 y 4 con foto + video + diseño completos",
+      "Bloque 5 con intercalado o split claro",
+      "Bloque 6 con estética coherente al Video 1",
+      "Voice over con tono confiado pero no arrogante",
+      "Duración 40-50 segundos",
+      "Captions preparados",
+      "Publicación primero en TikTok"
+    ]
+  },
+  {
+    week: 3,
+    title: "El error de subir contenido sin sistema",
+    pillar: "Educación a marcas",
+    objective: "Que el dueño de un emprendimiento entienda que el problema no es producir más contenido, sino que el contenido esté conectado entre sí. Sembrar el concepto de 'sistema visual'.",
+    duration: "40-50 seg",
+    tone: "Diagnóstico claro, sin regaño, casi de cómplice",
+    concept: "La mayoría de marcas no tienen problema de cantidad, tienen problema de conexión. Cada pieza parece hecha por una persona distinta. Cuando todo dialoga, la marca crece.",
+    blocks: [
+      {
+        name: "BLOQUE 1 — HOOK",
+        time: "0:00 - 0:05",
+        toma: "Plano cenital de un teléfono mostrando un feed de Instagram desordenado. Se ve 'roto': foto cálida al lado de fría, tipografías distintas, posts sin diálogo entre sí. La cámara se queda quieta o hace zoom in muy lento.",
+        texto: "Este feed parece de 5 personas.",
+        vo: "Este feed parece hecho por 5 personas distintas. Pero es una sola marca.",
+        audio: "Música arrancando suave, atmosférica, con pulso bajo."
+      },
+      {
+        name: "BLOQUE 2 — EL DIAGNÓSTICO",
+        time: "0:05 - 0:11",
+        toma: "Secuencia rápida de piezas desconectadas hechas a propósito: foto con paleta cálida + diseño moderno con fondo blanco + foto fría oscura + video casero + post con dirección de arte distinta. Potentes individualmente pero sin hablarse.",
+        texto: "No es falta de talento. Es falta de sistema.",
+        vo: "El problema no es la calidad de cada pieza. El problema es que entre ellas no se hablan.",
+        audio: "Música baja, espacio respirable."
+      },
+      {
+        name: "BLOQUE 3 — CONSECUENCIA DEL CAOS",
+        time: "0:11 - 0:20",
+        toma: "Vuelve al plano del teléfono haciendo scroll por el feed desordenado. El ojo del usuario 'no encuentra' la marca dentro de su propio feed. Después plano de tus manos o setup (atmosférico breve).",
+        texto: "Una marca sin sistema no se recuerda.",
+        vo: "Cuando una marca no tiene un sistema visual claro, su contenido funciona como ruido. El cliente lo ve, pero no lo recuerda. Y lo que no se recuerda, no se compra.",
+        audio: "Beat marcado, ritmo sostenido."
+      },
+      {
+        name: "BLOQUE 4 — MARCA CON SISTEMA",
+        time: "0:20 - 0:30",
+        toma: "Secuencia de 3 piezas tuyas: foto cinematográfica con tu paleta + mini video del mismo producto con misma vibra + post diseñado en mockup con misma identidad. Las 3 piezas claramente del mismo mundo visual.",
+        texto: "Un sistema. Tres formatos. Una sola marca.",
+        vo: "Una marca con sistema visual funciona distinto. Cada pieza confirma a la anterior. Y entre todas, construyen una marca que se reconoce sin tener que mostrar el logo.",
+        audio: "Drop sutil de la música. Clímax."
+      },
+      {
+        name: "BLOQUE 5 — SISTEMA SOBRE VOLUMEN",
+        time: "0:30 - 0:38",
+        toma: "Plano atmosférico: grilla de fotos en pantalla con coherencia, libreta con bocetos, mood boards, paletas. Detrás de un sistema hay pensamiento, no más producción.",
+        texto: "No necesitás más contenido. Necesitás contenido conectado.",
+        vo: "El error más común es creer que la solución es subir más. La solución casi siempre es subir mejor conectado.",
+        audio: "Música pausada, espacio."
+      },
+      {
+        name: "BLOQUE 6 — CIERRE ATMOSFÉRICO",
+        time: "0:38 - 0:45",
+        toma: "Plano cinematográfico de tu setup similar al cierre de videos anteriores. Tu firma visual ya empieza a ser reconocible.",
+        texto: "Una marca no se construye con piezas sueltas. Se construye con coherencia.",
+        vo: "Una marca no se construye con piezas sueltas. Se construye con coherencia. Y eso es lo que separa a las marcas que crecen, de las que solo publican.",
+        audio: "Música bajando, espacio."
+      },
+      {
+        name: "BLOQUE 7 — CTA",
+        time: "0:45 - 0:50",
+        toma: "Mismo formato del CTA de videos anteriores.",
+        texto: "¿Tu marca tiene sistema?",
+        vo: "¿Tu marca está publicando en sistema o publicando en piezas sueltas? Seguime. Esto va tomando forma.",
+        audio: "Cierre musical limpio."
+      }
+    ],
+    voiceOver: [
+      "Este feed parece hecho por 5 personas distintas. Pero es una sola marca.",
+      "El problema no es la calidad de cada pieza. El problema es que entre ellas no se hablan.",
+      "Cuando una marca no tiene un sistema visual claro, su contenido funciona como ruido. El cliente lo ve, pero no lo recuerda. Y lo que no se recuerda, no se compra.",
+      "Una marca con sistema visual funciona distinto. Cada pieza confirma a la anterior. Y entre todas, construyen una marca que se reconoce sin tener que mostrar el logo.",
+      "El error más común es creer que la solución es subir más. La solución casi siempre es subir mejor conectado.",
+      "Una marca no se construye con piezas sueltas. Se construye con coherencia. Y eso es lo que separa a las marcas que crecen, de las que solo publican.",
+      "¿Tu marca está publicando en sistema o publicando en piezas sueltas? Seguime. Esto va tomando forma."
+    ],
+    productionPlan: [
+      { time: "45 min", task: "Diseñar mockup del feed roto" },
+      { time: "20 min", task: "Plano del teléfono mostrando el feed" },
+      { time: "60 min", task: "Crear/seleccionar las 5 piezas desconectadas" },
+      { time: "90 min", task: "Bloque 4: foto + video + diseño coherente" },
+      { time: "45 min", task: "Diseño del post coherente" },
+      { time: "20 min", task: "Plano atmosférico Bloque 5" },
+      { time: "15 min", task: "Plano atmosférico Bloque 6" },
+      { time: "20 min", task: "Plano CTA Bloque 7" },
+      { time: "20 min", task: "Voice over" }
+    ],
+    captionTiktok: "No publicás poco. Publicás desconectado.",
+    hashtagsTiktok: "#marcaspersonales #brandingvisual #emprendedoresvenezuela #sistemavisual #maracay",
+    captionInstagram: "El feed promedio de una marca pequeña parece hecho por 5 personas distintas. Y eso tiene un costo real: la marca no se reconoce, no se recuerda, no se queda.\n\nEl problema casi nunca es producir poco. Es producir desconectado.\n\nUna marca con sistema visual no necesita explicarse: cada pieza confirma a la anterior, y entre todas construyen algo que el cliente reconoce con un solo vistazo.\n\nEsto va tomando forma. Quedate.",
+    hashtagsInstagram: "#marcasenvenezuela #brandingdigital #contenidovisual #emprendedores #maracay",
+    hookVariants: [
+      "Este feed parece hecho por 5 personas distintas. Pero es una sola marca.",
+      "El error más común al hacer contenido para marcas.",
+      "No publicás poco. Publicás desconectado.",
+      "Por qué tu marca no se recuerda aunque publiques todos los días."
+    ],
+    checklist: [
+      "Mockup de feed roto bien diseñado",
+      "5 piezas desconectadas potentes pero sin diálogo",
+      "Bloque 4 demostrando coherencia real",
+      "Mismo grading que videos anteriores",
+      "Cambio de bio intermedia esta semana",
+      "Duración 40-50 segundos",
+      "Empezar a usar respuesta de DM premium",
+      "Captions preparados"
+    ]
+  },
+  {
+    week: 4,
+    title: "Por qué una sola foto no construye una marca",
+    pillar: "Educación a marcas + concepto de ecosistema",
+    objective: "Que el dueño de un emprendimiento entienda que una marca necesita tres capas (foto, video, diseño) trabajando juntas. Y que vea esas tres capas demostradas.",
+    duration: "40-50 seg",
+    tone: "Pedagógico pero sin dictar cátedra. Más 'te muestro' que 'te explico'",
+    concept: "Una marca no se construye con un solo formato. Necesita la imagen fija que la fija en la memoria (foto), el movimiento que la hace deseable (video) y la información ordenada que la hace entendible (diseño).",
+    blocks: [
+      {
+        name: "BLOQUE 1 — HOOK",
+        time: "0:00 - 0:05",
+        toma: "Plano cenital o cerrado de UNA sola foto cinematográfica del producto. Todo cuidado: paleta, dirección, composición. Vive 3 segundos sola, sin texto. Después zoom out leve revela que esa foto es solo una entre varias piezas.",
+        texto: "Esta foto está perfecta. Pero sola, no alcanza.",
+        vo: "Una foto perfecta es solo el principio. Para construir una marca, hace falta más.",
+        audio: "Música arrancando suave, atmosférica."
+      },
+      {
+        name: "BLOQUE 2 — LA TESIS",
+        time: "0:05 - 0:11",
+        toma: "Corte a plano cinematográfico tuyo o de tu setup, atmosférico. Tiempo para plantear la idea grande.",
+        texto: "Una marca vive en 3 capas.",
+        vo: "Una marca no vive en un solo formato. Vive en tres capas que trabajan juntas. Y cada una cumple una función distinta.",
+        audio: "Música baja, espacio respirable, suspenso."
+      },
+      {
+        name: "BLOQUE 3 — CAPA 1: LA FOTO",
+        time: "0:11 - 0:19",
+        toma: "Secuencia de 2-3 fotos cinematográficas del mismo producto, en cortes pausados. Imágenes fijas, sin movimiento.",
+        texto: "1. La foto. Lo que se queda en la memoria.",
+        vo: "La foto es lo que ancla a tu marca en la memoria del cliente. Es la imagen que va a recordar cuando vea tu nombre en otro lado.",
+        audio: "Música retoma con beat sutil pero firme."
+      },
+      {
+        name: "BLOQUE 4 — CAPA 2: EL VIDEO",
+        time: "0:19 - 0:27",
+        toma: "Corte a mini video cinematográfico del mismo producto. Movimiento entra por primera vez como protagonista: dolly suave, rotación, vapor, manos interactuando. Idealmente 2 mini videos seguidos.",
+        texto: "2. El video. Lo que hace sentir la marca.",
+        vo: "El video es lo que le da espíritu a tu marca. Es lo que hace que el cliente la sienta antes de pensarla.",
+        audio: "Beat más definido, energía creciendo."
+      },
+      {
+        name: "BLOQUE 5 — CAPA 3: EL DISEÑO",
+        time: "0:27 - 0:35",
+        toma: "Corte a mockup digital de teléfono mostrando carrusel diseñado del mismo producto. Slides 'pasan' en pantalla: portada con tipografía, slide con info, slide con cierre.",
+        texto: "3. El diseño. Lo que ordena y vende.",
+        vo: "Y el diseño es lo que organiza todo para que el cliente entienda y decida. Es lo que convierte la imagen en venta.",
+        audio: "Beat sostenido, ritmo construyendo."
+      },
+      {
+        name: "BLOQUE 6 — REVELACIÓN: LAS 3 JUNTAS",
+        time: "0:35 - 0:42",
+        toma: "Secuencia veloz, todo conectado: foto (1s) + mini video (1.5s) + diseño en mockup (1.5s). Las 3 piezas comparten paleta, dirección y firma. Transiciones: foto cobra vida, video entra al teléfono.",
+        texto: "Foto. Video. Diseño. Una sola marca.",
+        vo: "Cuando las tres capas conversan entre sí, dejás de tener piezas sueltas. Empezás a tener una marca.",
+        audio: "Drop de la música. Momento de impacto."
+      },
+      {
+        name: "BLOQUE 7 — CIERRE ATMOSFÉRICO",
+        time: "0:42 - 0:48",
+        toma: "Plano atmosférico de tu setup, en línea visual con los cierres anteriores.",
+        texto: "Una marca completa necesita las tres.",
+        vo: "Una marca completa no es la suma de tres cosas distintas. Es las tres cosas hablando entre sí.",
+        audio: "Música bajando, espacio."
+      },
+      {
+        name: "BLOQUE 8 — CTA",
+        time: "0:48 - 0:52",
+        toma: "Mismo formato del CTA de videos anteriores.",
+        texto: "¿Tu marca tiene las tres capas?",
+        vo: "¿Tu marca tiene las tres capas trabajando? Seguime. Esto va tomando forma.",
+        audio: "Cierre limpio."
+      }
+    ],
+    voiceOver: [
+      "Una foto perfecta es solo el principio. Para construir una marca, hace falta más.",
+      "Una marca no vive en un solo formato. Vive en tres capas que trabajan juntas. Y cada una cumple una función distinta.",
+      "La foto es lo que ancla a tu marca en la memoria del cliente. Es la imagen que va a recordar cuando vea tu nombre en otro lado.",
+      "El video es lo que le da espíritu a tu marca. Es lo que hace que el cliente la sienta antes de pensarla.",
+      "Y el diseño es lo que organiza todo para que el cliente entienda y decida. Es lo que convierte la imagen en venta.",
+      "Cuando las tres capas conversan entre sí, dejás de tener piezas sueltas. Empezás a tener una marca.",
+      "Una marca completa no es la suma de tres cosas distintas. Es las tres cosas hablando entre sí.",
+      "¿Tu marca tiene las tres capas trabajando? Seguime. Esto va tomando forma."
+    ],
+    productionPlan: [
+      { time: "30 min", task: "Producto y setup" },
+      { time: "60 min", task: "3 fotos del producto (Bloque 3)" },
+      { time: "60 min", task: "2 mini videos (Bloque 4)" },
+      { time: "75 min", task: "Diseño del carrusel (computadora)" },
+      { time: "30 min", task: "Mockup digital o grabación de teléfono" },
+      { time: "15 min", task: "Plano atmosférico cierre" },
+      { time: "20 min", task: "Plano CTA" },
+      { time: "20 min", task: "Voice over" }
+    ],
+    captionTiktok: "Una foto no es una marca. Es solo el principio.",
+    hashtagsTiktok: "#marcaspersonales #brandingvisual #emprendedoresvenezuela #contenidoparamarcas #maracay",
+    captionInstagram: "Una marca completa vive en tres capas: la foto que se queda en la memoria, el video que la hace sentir viva, y el diseño que ordena y convierte.\n\nCuando las tres conversan, dejás de tener piezas sueltas. Empezás a tener una marca.\n\nEsto va tomando forma. Quedate.",
+    hashtagsInstagram: "#marcasenvenezuela #brandingdigital #contenidovisual #emprendedores #maracay",
+    hookVariants: [
+      "Una foto perfecta es solo el principio.",
+      "Una marca no vive en un solo formato.",
+      "Si tu marca solo tiene fotos, te falta el 70%.",
+      "Las tres capas que toda marca necesita."
+    ],
+    checklist: [
+      "Bloque 1 con foto fija viviendo 3 seg",
+      "3 fotos del producto en distintos ángulos",
+      "2 mini videos cinemáticos",
+      "Carrusel diseñado completo",
+      "Bloque 6 con las 3 capas intercaladas al ritmo",
+      "Drop musical en Bloque 6",
+      "Duración 40-50 segundos",
+      "Captions preparados"
+    ]
+  },
+  {
+    week: 5,
+    title: "Cómo se ve una marca cuando todo conversa entre sí",
+    pillar: "Demostración visual + mención de cupos",
+    objective: "Que el espectador VEA, no escuche, lo que hacés. Que sienta que necesita eso. Y que sepa cómo acceder.",
+    duration: "45-55 seg",
+    tone: "Cinematográfico, casi sin palabras. Trailer de marca.",
+    concept: "Ecosistema visual completo de una marca atravesando las tres capas. Sin explicaciones. Solo demostración pura. Al final, mención breve de los cupos.",
+    blocks: [
+      {
+        name: "BLOQUE 1 — APERTURA SILENCIOSA",
+        time: "0:00 - 0:06",
+        toma: "Plano cinematográfico cerrado del producto. Iluminación cuidada, paleta definida, dirección clara. Vive 3-4 seg sola, sin texto, sin voice over. Después leve dolly suave o zoom out.",
+        texto: "Una marca.",
+        vo: "(silencio total)",
+        audio: "Música cinematográfica arrancando con presencia, build-up."
+      },
+      {
+        name: "BLOQUE 2 — LA CAPA FOTO",
+        time: "0:06 - 0:15",
+        toma: "Secuencia de 3-4 fotos cinematográficas del mismo producto, ángulos distintos, misma identidad. Cortes pausados al beat. Las 4 piezas comparten paleta, dirección y firma.",
+        texto: "Foto.",
+        vo: "(silencio)",
+        audio: "Música crece levemente."
+      },
+      {
+        name: "BLOQUE 3 — LA CAPA VIDEO",
+        time: "0:15 - 0:24",
+        toma: "Secuencia de 2-3 mini videos cinemáticos del mismo producto: dolly suave, producto en interacción (manos, vapor, líquido), plano detalle elegante. Transiciones: cortes al beat o IA suaves.",
+        texto: "Video.",
+        vo: "(silencio)",
+        audio: "Beat marcado, ritmo construyendo. Primer build importante."
+      },
+      {
+        name: "BLOQUE 4 — LA CAPA DISEÑO",
+        time: "0:24 - 0:32",
+        toma: "Secuencia de piezas gráficas diseñadas: mockup de teléfono con carrusel deslizándose + post de feed en mockup + detalle de pieza con tipografía. Mismas identidad de las capas anteriores.",
+        texto: "Diseño.",
+        vo: "(silencio sostenido)",
+        audio: "Beat máximo. Build-up fuerte hacia el drop."
+      },
+      {
+        name: "BLOQUE 5 — REVELACIÓN: ECOSISTEMA",
+        time: "0:32 - 0:40",
+        toma: "<strong>Clímax del video.</strong> Secuencia muy rápida (cortes de 1 seg): foto → video → diseño → foto → video → diseño. Las piezas ya mostradas, ahora intercaladas a ritmo. Todo es un solo sistema, todo es la marca.",
+        texto: "Una sola marca.",
+        vo: "Cuando todo conversa entre sí, dejás de tener piezas. Empezás a tener marca.",
+        audio: "Drop completo de la música. Punto máximo."
+      },
+      {
+        name: "BLOQUE 6 — CIERRE ATMOSFÉRICO",
+        time: "0:40 - 0:47",
+        toma: "Plano atmosférico cinematográfico: tu setup, una grilla del proyecto completo en pantalla, mood board, o plano detalle de tu cámara junto a un mockup. Iluminación cálida.",
+        texto: "Esto es lo que hago.",
+        vo: "Esto es lo que hago. Construyo el lenguaje visual completo de una marca.",
+        audio: "Música bajando, espacio."
+      },
+      {
+        name: "BLOQUE 7 — CTA CON CUPOS",
+        time: "0:47 - 0:55",
+        toma: "Plano cerrado tuyo a cámara o tu logo limpio. Consistencia con CTAs anteriores.",
+        texto: "Trabajo con 3 marcas al mes.",
+        vo: "Trabajo con 3 marcas al mes. Si querés que la tuya sea una, escribime DOMINIO por DM.",
+        audio: "Cierre limpio."
+      }
+    ],
+    voiceOver: [
+      "Cuando todo conversa entre sí, dejás de tener piezas. Empezás a tener marca.",
+      "Esto es lo que hago. Construyo el lenguaje visual completo de una marca.",
+      "Trabajo con 3 marcas al mes. Si querés que la tuya sea una, escribime DOMINIO por DM."
+    ],
+    productionPlan: [
+      { time: "60 min", task: "Preparación de identidad visual del producto" },
+      { time: "120 min", task: "4 fotos cinematográficas" },
+      { time: "90 min", task: "3 mini videos cinemáticos" },
+      { time: "90 min", task: "Diseño del carrusel (computadora)" },
+      { time: "30 min", task: "Diseño del post de feed" },
+      { time: "30 min", task: "Diseño de pieza gráfica adicional" },
+      { time: "20 min", task: "Plano atmosférico" },
+      { time: "20 min", task: "Plano CTA" },
+      { time: "15 min", task: "Voice over" }
+    ],
+    captionTiktok: "Construyo el lenguaje visual completo de una marca.",
+    hashtagsTiktok: "#marcaspersonales #brandingvisual #emprendedoresvenezuela #contenidoparamarcas #maracay",
+    captionInstagram: "Cuando una marca tiene foto, video y diseño hablando el mismo idioma, deja de parecer un emprendimiento y empieza a parecer marca.\n\nNo hago piezas sueltas. Construyo el lenguaje visual completo.\n\n3 marcas al mes. Si querés que la tuya sea una, escribime DOMINIO por DM.",
+    hashtagsInstagram: "#marcasenvenezuela #brandingdigital #contenidovisual #emprendedores #maracay",
+    hookVariants: [
+      "(El hook es visual. La primera toma debe detener el scroll en 1 segundo)",
+      "Probá 3-4 opciones de primera toma y elegí la más fuerte al editar"
+    ],
+    checklist: [
+      "Video más demandante del plan: 7-8 horas",
+      "Dividir producción en 2 jornadas si hace falta",
+      "1 producto/marca como protagonista",
+      "Primera toma debe ser la más fuerte",
+      "Drop musical sincronizado al Bloque 5",
+      "Bloque 5 con cortes muy rápidos al beat",
+      "Mención de cupos clara pero breve",
+      "Fijar este video en bio después de publicar",
+      "Stories con cupos visibles esta semana"
+    ]
+  },
+  {
+    week: 6,
+    title: "Lo que hago no es contenido. Es identidad visual.",
+    pillar: "Filosofía / cierre conceptual",
+    objective: "Instalarte como creador con visión a largo plazo. Diferenciarte del freelancer común. Cerrar el plan con madurez.",
+    duration: "40-50 seg",
+    tone: "Reflexivo, íntimo, sereno. El más maduro del plan.",
+    concept: "Una declaración de filosofía. El contenido se consume y se olvida. La identidad visual se construye y permanece. Eso es lo que hacés. Y por eso aceptás pocas marcas al mes.",
+    blocks: [
+      {
+        name: "BLOQUE 1 — HOOK CONCEPTUAL",
+        time: "0:00 - 0:06",
+        toma: "Plano cinematográfico tuyo, semiperfil o de espaldas, en tu zona de trabajo. Iluminación cálida, intimidad. Estás quieto o haciendo algo simple. NO mirás a cámara.",
+        texto: "Hay una diferencia.",
+        vo: "Hay una diferencia entre hacer contenido y construir identidad visual.",
+        audio: "Música atmosférica, sin beat marcado. Casi ambiente."
+      },
+      {
+        name: "BLOQUE 2 — DEFINICIÓN 1: CONTENIDO",
+        time: "0:06 - 0:14",
+        toma: "Secuencia rápida de piezas genéricas, casi anónimas: scrolls de feeds, posts sueltos, fragmentos de videos. Sensación de flujo, ruido, cantidad. Piezas que existen pero no dejan huella.",
+        texto: "El contenido se consume.",
+        vo: "El contenido se publica, se consume, y se olvida. Es el ruido que llena el feed.",
+        audio: "Música sigue baja, sin grandes acentos."
+      },
+      {
+        name: "BLOQUE 3 — DEFINICIÓN 2: IDENTIDAD VISUAL",
+        time: "0:14 - 0:24",
+        toma: "Corte total de tono. Secuencia cinematográfica de piezas tuyas con identidad clara: foto cuidada + mini video + diseño coherente + detalle de mood board. Sensación de construcción, permanencia, lenguaje propio.",
+        texto: "La identidad visual permanece.",
+        vo: "La identidad visual no se consume. Se construye. Se queda. Es el lenguaje con el que una marca habla, aunque vos no estés mirando.",
+        audio: "La música crece levemente, sigue cinematográfica."
+      },
+      {
+        name: "BLOQUE 4 — LA DECLARACIÓN",
+        time: "0:24 - 0:33",
+        toma: "<strong>Plano cerrado tuyo, mirando a cámara.</strong> Iluminación cuidada. Quieto, sereno. No actuás, declarás. El momento más personal del video.",
+        texto: "Yo no hago contenido.",
+        vo: "Yo no hago contenido. Construyo el lenguaje visual con el que tu marca va a existir. Foto, video, diseño. Un solo idioma, una sola identidad.",
+        audio: "Música sostenida, casi a tu altura."
+      },
+      {
+        name: "BLOQUE 5 — LA FILOSOFÍA",
+        time: "0:33 - 0:42",
+        toma: "Plano atmosférico cinematográfico: tu setup, detalle de cámara junto a mood board, pantalla con piezas de proyecto. Iluminación cálida. Contemplativo.",
+        texto: "Una marca no se construye con más. Se construye con sentido.",
+        vo: "Por eso no trabajo con muchas marcas al mismo tiempo. Una marca no se construye con más contenido. Se construye con sentido.",
+        audio: "Música bajando, espacio."
+      },
+      {
+        name: "BLOQUE 6 — CTA SUTIL",
+        time: "0:42 - 0:48",
+        toma: "Plano cerrado tuyo o tu logo limpio. Consistencia con CTAs anteriores.",
+        texto: "Acepto pocas marcas al mes.",
+        vo: "Acepto pocas marcas al mes. Si querés que la tuya sea una, sabés dónde estoy.",
+        audio: "Cierre limpio, sereno."
+      }
+    ],
+    voiceOver: [
+      "Hay una diferencia entre hacer contenido y construir identidad visual.",
+      "El contenido se publica, se consume, y se olvida. Es el ruido que llena el feed.",
+      "La identidad visual no se consume. Se construye. Se queda. Es el lenguaje con el que una marca habla, aunque vos no estés mirando.",
+      "Yo no hago contenido. Construyo el lenguaje visual con el que tu marca va a existir. Foto, video, diseño. Un solo idioma, una sola identidad.",
+      "Por eso no trabajo con muchas marcas al mismo tiempo. Una marca no se construye con más contenido. Se construye con sentido.",
+      "Acepto pocas marcas al mes. Si querés que la tuya sea una, sabés dónde estoy."
+    ],
+    productionPlan: [
+      { time: "30 min", task: "Preparación del setup" },
+      { time: "30 min", task: "Plano hook (Bloque 1)" },
+      { time: "30 min", task: "Piezas anónimas / scrolls (Bloque 2)" },
+      { time: "60 min", task: "Piezas cinematográficas (Bloque 3)" },
+      { time: "45 min", task: "Plano declaración (Bloque 4) — el más importante" },
+      { time: "20 min", task: "Plano atmosférico (Bloque 5)" },
+      { time: "20 min", task: "Plano CTA (Bloque 6)" },
+      { time: "25 min", task: "Voice over (tono reflexivo, varios takes)" }
+    ],
+    captionTiktok: "Yo no hago contenido. Construyo identidad visual.",
+    hashtagsTiktok: "#marcaspersonales #brandingvisual #emprendedoresvenezuela #contenidoparamarcas #maracay",
+    captionInstagram: "El contenido se publica, se consume, se olvida.\n\nLa identidad visual se construye y permanece.\n\nPor eso no trabajo con muchas marcas al mismo tiempo. Una marca no se construye con más contenido. Se construye con sentido.\n\nAcepto pocas marcas al mes. Si querés que la tuya sea una, sabés dónde estoy.",
+    hashtagsInstagram: "#marcasenvenezuela #brandingdigital #identidadvisual #emprendedores #maracay",
+    hookVariants: [
+      "Hay una diferencia entre hacer contenido y construir identidad visual.",
+      "Yo no hago contenido. Hago algo distinto.",
+      "La diferencia entre una marca que se queda y una que se olvida.",
+      "Por qué no trabajo con muchas marcas al mismo tiempo."
+    ],
+    checklist: [
+      "Tono reflexivo en voice over",
+      "Bloque 4 con plano declaración bien grabado",
+      "Mismo grading de videos anteriores",
+      "Música atmosférica sin drop fuerte",
+      "Cambio de bio final esta semana",
+      "Reemplazar Video 5 fijado por este Video 6",
+      "Empezar a usar como respuesta de DM premium",
+      "Duración 40-50 segundos"
+    ]
+  }
+];
+
+// ============ RENDER WEEK CARDS ============
+function renderWeekCards() {
+  const grid = document.getElementById('weeksGrid');
+  grid.innerHTML = videos.map((v, i) => `
+    <div class="week-card" onclick="openModal(${i})">
+      <div class="week-number">
+        <span>Semana ${String(v.week).padStart(2, '0')}</span>
+        <span>—</span>
+        <span>Reel</span>
+      </div>
+      <div class="week-number-big">${String(v.week).padStart(2, '0')}</div>
+      <h3 class="week-title">${v.title}</h3>
+      <div class="week-pillar">${v.pillar}</div>
+      <div class="week-cta">
+        <span>Ver guion completo</span>
+        <span class="week-arrow">→</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ============ MODAL ============
+function openModal(index) {
+  const v = videos[index];
+  document.getElementById('modalMeta').textContent = `Semana ${String(v.week).padStart(2, '0')} / 06`;
+  
+  const body = document.getElementById('modalBody');
+  body.innerHTML = `
+    <div class="modal-number">${String(v.week).padStart(2, '0')}</div>
+    
+    <div class="modal-header">
+      <div class="modal-tag">(${String(v.week).padStart(2, '0')}) Semana ${v.week} / Guion completo</div>
+      <h2 class="modal-title">${v.title}</h2>
+      <p class="modal-subtitle">${v.concept}</p>
+    </div>
+    
+    <div class="modal-tabs">
+      <button class="modal-tab active" onclick="switchTab(event, 'ficha-${index}')">Ficha</button>
+      <button class="modal-tab" onclick="switchTab(event, 'bloques-${index}')">Bloques</button>
+      <button class="modal-tab" onclick="switchTab(event, 'guion-${index}')">Voice Over</button>
+      <button class="modal-tab" onclick="switchTab(event, 'produccion-${index}')">Producción</button>
+      <button class="modal-tab" onclick="switchTab(event, 'captions-${index}')">Captions</button>
+      <button class="modal-tab" onclick="switchTab(event, 'check-${index}')">Checklist</button>
+    </div>
+    
+    <!-- FICHA -->
+    <div class="tab-content active" id="ficha-${index}">
+      <div class="content-section">
+        <h3 class="content-h3">Ficha técnica</h3>
+        <div class="data-table">
+          <div class="data-table-row">
+            <div class="data-table-cell">Duración</div>
+            <div class="data-table-cell">${v.duration}</div>
+          </div>
+          <div class="data-table-row">
+            <div class="data-table-cell">Formato</div>
+            <div class="data-table-cell">Vertical 9:16 (1080x1920)</div>
+          </div>
+          <div class="data-table-row">
+            <div class="data-table-cell">Pilar</div>
+            <div class="data-table-cell">${v.pillar}</div>
+          </div>
+          <div class="data-table-row">
+            <div class="data-table-cell">Tono</div>
+            <div class="data-table-cell">${v.tone}</div>
+          </div>
+          <div class="data-table-row">
+            <div class="data-table-cell">Objetivo</div>
+            <div class="data-table-cell">${v.objective}</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="content-section">
+        <h3 class="content-h3">Variantes de hook</h3>
+        <ul class="content-ul">
+          ${v.hookVariants.map(h => `<li>"${h}"</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+    
+    <!-- BLOQUES -->
+    <div class="tab-content" id="bloques-${index}">
+      <div class="content-section">
+        <h3 class="content-h3">Estructura por bloques</h3>
+        ${v.blocks.map(b => `
+          <div class="block-card">
+            <div class="block-header">
+              <div class="block-title">${b.name}</div>
+              <div class="block-time">${b.time}</div>
+            </div>
+            <div class="block-row">
+              <div class="block-row-label">Toma</div>
+              <div class="block-row-content">${b.toma}</div>
+            </div>
+            <div class="block-row">
+              <div class="block-row-label">Texto</div>
+              <div class="block-row-content"><span class="quote">${b.texto}</span></div>
+            </div>
+            <div class="block-row">
+              <div class="block-row-label">Voice Over</div>
+              <div class="block-row-content"><span class="quote">${b.vo}</span></div>
+            </div>
+            <div class="block-row">
+              <div class="block-row-label">Audio</div>
+              <div class="block-row-content">${b.audio}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+    
+    <!-- GUION CONSOLIDADO -->
+    <div class="tab-content" id="guion-${index}">
+      <div class="content-section">
+        <h3 class="content-h3">Voice over consolidado</h3>
+        <p class="content-p">Texto limpio para grabar la narración. Tiempo de lectura natural: aprox. 30-45 segundos.</p>
+        <div class="voice-over-box">
+          <div class="voice-over-text">
+            ${v.voiceOver.map(line => `<p>${line}</p>`).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- PRODUCCIÓN -->
+    <div class="tab-content" id="produccion-${index}">
+      <div class="content-section">
+        <h3 class="content-h3">Plan de producción</h3>
+        <p class="content-p">Tiempo estimado total. Distribuir en una o dos jornadas de fin de semana.</p>
+        <div class="data-table">
+          ${v.productionPlan.map(p => `
+            <div class="data-table-row">
+              <div class="data-table-cell">${p.time}</div>
+              <div class="data-table-cell">${p.task}</div>
+            </div>
+          `).join('')}
+          <div class="data-table-row">
+            <div class="data-table-cell">Total</div>
+            <div class="data-table-cell"><strong>${calculateTotalTime(v.productionPlan)}</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CAPTIONS -->
+    <div class="tab-content" id="captions-${index}">
+      <div class="content-section">
+        <h3 class="content-h3">Captions de publicación</h3>
+        
+        <div class="caption-card">
+          <span class="caption-platform">TikTok</span>
+          <div class="caption-text">${v.captionTiktok}<span class="caption-hashtags">${v.hashtagsTiktok}</span></div>
+        </div>
+        
+        <div class="caption-card">
+          <span class="caption-platform">Instagram</span>
+          <div class="caption-text">${v.captionInstagram}<span class="caption-hashtags">${v.hashtagsInstagram}</span></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CHECKLIST -->
+    <div class="tab-content" id="check-${index}">
+      <div class="content-section">
+        <h3 class="content-h3">Checklist antes de publicar</h3>
+        <p class="content-p">Tocá cada item para marcarlo como completado.</p>
+        <div class="checklist">
+          ${v.checklist.map((item, i) => `
+            <div class="checklist-item" onclick="toggleCheck(this)">
+              <div class="checklist-checkbox"></div>
+              <span class="checklist-label">${item}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+  
+  document.getElementById('modal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function switchTab(e, tabId) {
+  // Buscar el modal-tabs padre
+  const tabsContainer = e.target.parentElement;
+  const modalBody = tabsContainer.parentElement;
+  
+  // Quitar active de todos los tabs y contenidos
+  tabsContainer.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+  modalBody.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  
+  // Activar el clickeado
+  e.target.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+}
+
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+}
+
+function calculateTotalTime(plan) {
+  let total = 0;
+  plan.forEach(p => {
+    const match = p.time.match(/(\d+)/);
+    if (match) total += parseInt(match[1]);
+  });
+  const hours = Math.floor(total / 60);
+  const mins = total % 60;
+  if (hours > 0) return `${hours}h ${mins}min`;
+  return `${mins} min`;
+}
+
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+// Cerrar modal con ESC
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal();
+});
+
+// Cerrar modal al hacer click fuera
+document.getElementById('modal').addEventListener('click', (e) => {
+  if (e.target.id === 'modal') closeModal();
+});
+
+// Init
+renderWeekCards();
+</script>
+
+</body>
+</html>
